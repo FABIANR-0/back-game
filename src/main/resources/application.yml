@@ -1,0 +1,42 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /app
+spring:
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+  datasource:
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/back-game
+    username: postgres
+  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: wpossecommerce@gmail.com
+#    password: tytilastpyeynsoo
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+  jpa:
+    generate-ddl: false
+    hibernate.ddl-auto: create
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          charset_name: UTF-8
+#          import_files: scripts/1_document_type.sql, scripts/user.sql, scripts/4_modules.sql, scripts/5_permissions.sql, scripts/6_roles.sql, scripts/7_email_template.sql, scripts/types.sql, scripts/configuration.sql
+settings:
+  auth:
+    token-time: 30
+  encryption:
+    aes:
+      key: p1u8BUk3s2LMpiipOt0H2&kI8691oWG5
+      iv: 7i3N42ATc
