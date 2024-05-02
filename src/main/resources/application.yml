@@ -24,7 +24,7 @@ spring:
 #            required: true
   jpa:
     generate-ddl: false
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: none
     show-sql: true
     open-in-view: false
     properties:
