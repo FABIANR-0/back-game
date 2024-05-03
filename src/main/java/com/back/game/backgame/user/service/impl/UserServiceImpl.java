@@ -1,6 +1,8 @@
 package com.back.game.backgame.user.service.impl;
 
+import com.back.game.backgame.common.exception_handler.ResourceNotFoundException;
 import com.back.game.backgame.user.dto.UserCreateRequest;
+import com.back.game.backgame.user.dto.UserResponse;
 import com.back.game.backgame.user.entity.User;
 import com.back.game.backgame.user.repository.UserRepository;
 import com.back.game.backgame.user.service.UserService;
@@ -24,5 +26,17 @@ public class UserServiceImpl implements UserService {
                 request.getBirthday()
         );
         userRepository.save(user);
+    }
+
+    @Override
+    public UserResponse getUserByMail(String mail) {
+        User user = userRepository.findByEmail(mail).orElseThrow(()->new ResourceNotFoundException("User not found"));
+        return UserResponse.create(
+                user.getUserId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getBirthday()
+        );
     }
 }

@@ -1,8 +1,10 @@
 package com.back.game.backgame.user.controller;
 
 import com.back.game.backgame.user.dto.UserCreateRequest;
+import com.back.game.backgame.user.dto.UserResponse;
 import com.back.game.backgame.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -26,5 +28,13 @@ public class UserController {
     public ResponseEntity<HttpStatus> saveNote(@RequestBody @Valid UserCreateRequest request) {
         userService.create(request);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{mail}")
+    @Operation(description = "get user by mail")
+    @ApiResponse(responseCode = "200", description = "success")
+    public ResponseEntity<UserResponse> getUser(@Parameter(required = true, description = "mail of a user")
+                                                @PathVariable("mail") String mail) {
+        return new ResponseEntity<>(userService.getUserByMail(mail), HttpStatus.OK);
     }
 }
