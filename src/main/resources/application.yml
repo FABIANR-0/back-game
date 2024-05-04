@@ -10,18 +10,6 @@ spring:
     password: 1234
     url: jdbc:postgresql://localhost:5432/back-game
     username: postgres
-  mail:
-#    host: smtp.gmail.com
-#    port: 587
-#    username: wpossecommerce@gmail.com
-#    password: tytilastpyeynsoo
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#            required: true
   jpa:
     generate-ddl: false
     hibernate.ddl-auto: none
