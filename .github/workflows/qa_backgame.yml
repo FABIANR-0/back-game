@@ -19,16 +19,20 @@ jobs:
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
-          java-version: 'java21'
+          java-version: '21'
 
-      - name: Build with Maven
-        run: mvn clean install
+      - name: Grant execute permission to Gradle wrapper
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/build/libs/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -38,25 +42,24 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
-  
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: java-app
-      
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DAB460F9AB104B0FB34D256F7DFCA279 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_61175D2D16BB49D084C69421641B2A05 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D5BCE4DC29A041F992C78E220898C01C }}
+           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DAB460F9AB104B0FB34D256F7DFCA279 }}
+           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_61175D2D16BB49D084C69421641B2A05 }}
+           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D5BCE4DC29A041F992C78E220898C01C }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'backGame'
+          app-name: 'backendufpso'
           slot-name: 'Production'
-          package: '*.jar'
-          
+          package: 'ufpso-0.0.1-SNAPSHOT.jar'
