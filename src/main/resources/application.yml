@@ -7,12 +7,13 @@ spring:
     path match:
       matching-strategy: ant_path_matcher
   datasource:
-    password: 1234
-    url: jdbc:postgresql://localhost:5432/back-game
-    username: postgres
+    password: RW4Ngt7MskZE
+    url: jdbc:postgresql://ep-polished-bonus-a4ir75yo.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require
+    username: default
   jpa:
     generate-ddl: false
-    hibernate.ddl-auto: none
+    hibernate.ddl-auto: update
+
     show-sql: true
     open-in-view: false
     properties:
