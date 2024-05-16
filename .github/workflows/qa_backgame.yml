@@ -62,4 +62,4 @@ jobs:
         with:
           app-name: 'backGame'
           slot-name: 'Production'
-          package: '*.jar'
+          package: 'back-game-0.0.1-SNAPSHOT.jar'
