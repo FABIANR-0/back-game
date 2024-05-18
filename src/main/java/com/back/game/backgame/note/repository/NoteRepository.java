@@ -15,4 +15,7 @@ public interface NoteRepository extends JpaRepository<Note, UUID> {
     @Query("SELECT new com.back.game.backgame.note.dto.NoteResponse(n.subject, n.value, n.exam, n.win) FROM Note n " +
             "WHERE n.user.userId = :userId")
     List<NoteResponse> getAllNotesOfUser(UUID userId);
+
+    @Query("SELECT new com.back.game.backgame.note.dto.NoteResponse(n.subject, n.value, n.exam, n.win) FROM Note n ")
+    List<NoteResponse> getAllNotes();
 }

@@ -40,4 +40,11 @@ public class NoteController {
                                                                  @PathVariable("id") UUID userId) {
         return ResponseEntity.ok(noteService.getNotesOfUser(userId));
     }
+
+    @GetMapping("/all")
+    @Operation(description = "get all notes")
+    @ApiResponse(responseCode = "200", description = "ok")
+    public ResponseEntity<List<NoteResponse>> getAllNotes() {
+        return ResponseEntity.ok(noteService.getNotesAllNotes());
+    }
 }

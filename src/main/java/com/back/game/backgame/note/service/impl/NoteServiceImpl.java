@@ -41,4 +41,9 @@ public class NoteServiceImpl implements NoteService {
     public List<NoteResponse> getNotesOfUser(UUID userId) {
         return noteRepository.getAllNotesOfUser(userId);
     }
+
+    @Override
+    public List<NoteResponse> getNotesAllNotes() {
+        return noteRepository.getAllNotes();
+    }
 }
