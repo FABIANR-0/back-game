@@ -33,12 +33,12 @@ public class NoteController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/{name}")
     @Operation(description = "get notes of user")
     @ApiResponse(responseCode = "200", description = "ok")
-    public ResponseEntity<List<NoteResponse>> getNotesOfUser(@Parameter(description = "UUID of an user", required = true)
-                                                                 @PathVariable("id") UUID userId) {
-        return ResponseEntity.ok(noteService.getNotesOfUser(userId));
+    public ResponseEntity<List<NoteResponse>> getNotesOfUser(@Parameter(description = "name of an user", required = true)
+                                                                 @PathVariable("name") String userName) {
+        return ResponseEntity.ok(noteService.getNotesOfUser(userName));
     }
 
     @GetMapping("/all")

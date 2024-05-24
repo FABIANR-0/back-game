@@ -22,7 +22,7 @@ public class NoteCreateRequest {
     @NotBlank
     private String exam;
 
-    @JsonProperty("user_id")
+    @JsonProperty("user_name")
     @NotNull
-    private UUID userId;
+    private String userName;
 }

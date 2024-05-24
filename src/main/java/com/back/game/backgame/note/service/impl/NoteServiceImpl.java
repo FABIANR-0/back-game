@@ -18,11 +18,9 @@ public class NoteServiceImpl implements NoteService {
 
     private final NoteRepository noteRepository;
 
-    private final UserRepository userRepository;
 
-    public NoteServiceImpl(NoteRepository noteRepository, UserRepository userRepository) {
+    public NoteServiceImpl(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
-        this.userRepository = userRepository;
     }
 
 
@@ -30,16 +28,15 @@ public class NoteServiceImpl implements NoteService {
     public void create(NoteCreateRequest request) {
         Note note = Note.crete(request.getSubject(),
                 request.getValue(),
+                request.getUserName(),
                 request.getExam()
         );
-        User user = userRepository.findById(request.getUserId()).orElseThrow(()-> new ResourceNotFoundException("el usuario no existe"));
-        note.addUser(user);
         noteRepository.save(note);
     }
 
     @Override
-    public List<NoteResponse> getNotesOfUser(UUID userId) {
-        return noteRepository.getAllNotesOfUser(userId);
+    public List<NoteResponse> getNotesOfUser(String userName) {
+        return noteRepository.getAllNotesOfUser(userName);
     }
 
     @Override
