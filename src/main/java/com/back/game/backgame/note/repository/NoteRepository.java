@@ -12,10 +12,10 @@ import java.util.UUID;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, UUID> {
 
-    @Query("SELECT new com.back.game.backgame.note.dto.NoteResponse(n.subject, n.value, n.exam, n.win) FROM Note n " +
-            "WHERE n.user.userId = :userId")
-    List<NoteResponse> getAllNotesOfUser(UUID userId);
+    @Query("SELECT new com.back.game.backgame.note.dto.NoteResponse(n.subject, n.value, n.exam, n.win, n.userName) FROM Note n " +
+            "WHERE n.userName= :userName")
+    List<NoteResponse> getAllNotesOfUser(String userName);
 
-    @Query("SELECT new com.back.game.backgame.note.dto.NoteResponse(n.subject, n.value, n.exam, n.win) FROM Note n ")
+    @Query("SELECT new com.back.game.backgame.note.dto.NoteResponse(n.subject, n.value, n.exam, n.win, n.userName) FROM Note n order by n.userName")
     List<NoteResponse> getAllNotes();
 }

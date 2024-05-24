@@ -10,7 +10,7 @@ public interface NoteService {
 
     void create(NoteCreateRequest request);
 
-    List<NoteResponse> getNotesOfUser(UUID userId);
+    List<NoteResponse> getNotesOfUser(String userId);
 
     List<NoteResponse> getNotesAllNotes();
 }

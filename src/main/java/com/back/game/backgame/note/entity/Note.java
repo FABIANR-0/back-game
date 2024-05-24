@@ -31,24 +31,21 @@ public class Note extends AuditEntity {
     @Column(name = "win", nullable = false)
     private Boolean win;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "user_name", nullable = false)
+    private String userName;
 
     public Note(){}
 
-    public Note(String subject, String value, String exam, Boolean win) {
+    public Note(String subject, String value, String exam, String userName, Boolean win) {
         this.subject = subject;
         this.value = value;
         this.exam = exam;
+        this.userName = userName;
         this.win = win ;
     }
 
-    public  static  Note crete(String subject, String value, String exam){
-        return new Note(subject, value, exam, Double.parseDouble(value)>= 3);
+    public  static  Note crete(String subject, String value, String userName, String exam){
+        return new Note(subject, value, exam, userName, Double.parseDouble(value)>= 3);
     }
 
-    public void addUser(User user){
-        this.user = user;
-    }
 }

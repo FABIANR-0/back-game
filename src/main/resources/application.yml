@@ -12,8 +12,7 @@ spring:
     username: default
   jpa:
     generate-ddl: false
-    hibernate.ddl-auto: update
-
+    hibernate.ddl-auto: create
     show-sql: true
     open-in-view: false
     properties:
